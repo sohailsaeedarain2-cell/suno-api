@@ -10,6 +10,15 @@ const nextConfig = {
     serverMinification: false,
     serverComponentsExternalPackages: ['rebrowser-playwright-core', 'rebrowser-playwright'],
   },
+  outputfileTracingIncludes: {
+    '/api/**/*': ['./node_modules/**/*'],
+  },
+  functions: {
+    'src/app/api/**/*': {
+      memory: 1024,
+      maxDuration: 60,
+    },
+  },
   webpack: (config, { isServer }) => {
     if (isServer) {
       config.externals.push('rebrowser-playwright-core', 'rebrowser-playwright');
@@ -23,4 +32,3 @@ const nextConfig = {
 };
 
 export default nextConfig;
-
